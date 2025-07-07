@@ -16,9 +16,9 @@ const openai = new OpenAI({
 
 // 요청 제한 설정 (분당 10회)
 const rateLimiter = new RateLimiterMemory({
-  keyGenerator: (req) => req.ip,
   points: 10, // 최대 10회
   duration: 60, // 1분
+  keyPrefix: 'rlflx' // keyGenerator 옵션 제거, keyPrefix만 사용
 })
 
 const app = express()
@@ -28,7 +28,7 @@ app.use(compression())
 app.use(express.json())
 
 // 요청 제한 미들웨어
-app.use(async (req, res, next) => {
+app.use(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   try {
     await rateLimiter.consume(req.ip)
     next()
@@ -171,7 +171,7 @@ app.post('/api/analyze', async (req, res) => {
   }
 })
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000
 app.listen(PORT, () => {
   console.log(`Backend API listening on port ${PORT}`)
 }) 
