@@ -16,9 +16,9 @@ const openai = new OpenAI({
 
 // 요청 제한 설정 (분당 10회)
 const rateLimiter = new RateLimiterMemory({
-  points: 10, // 최대 10회
-  duration: 60, // 1분
-  keyPrefix: 'rlflx' // keyGenerator 옵션 제거, keyPrefix만 사용
+  points: 10,
+  duration: 60,
+  keyPrefix: 'rlflx'
 })
 
 const app = express()
