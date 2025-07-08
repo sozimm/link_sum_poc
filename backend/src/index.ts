@@ -30,7 +30,7 @@ app.use(express.json())
 // 요청 제한 미들웨어
 app.use(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   try {
-    await rateLimiter.consume(req.ip)
+    await rateLimiter.consume(req.ip || 'unknown')
     next()
   } catch (rejRes) {
     res.status(429).json({ 
