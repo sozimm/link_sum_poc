@@ -171,7 +171,7 @@ app.post('/api/analyze', async (req, res) => {
   }
 })
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 4000
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 app.listen(PORT, () => {
-  console.log(`Backend API listening on port ${PORT}`)
-}) 
+  console.log(`Backend API listening on port ${PORT}`);
+}); 
